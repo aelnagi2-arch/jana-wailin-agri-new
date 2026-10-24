@@ -1,0 +1,32 @@
+name: Build Jana Wailin APK
+
+on:
+workflow_dispatch:
+push:
+branches:
+- main
+
+jobs:
+build:
+runs-on: ubuntu-latest
+
+steps:
+  - name: Checkout repository
+    uses: actions/checkout@v4
+
+  - name: Set up Java
+    uses: actions/setup-java@v4
+    with:
+      distribution: temurin
+      java-version: '17'
+
+  - name: Set up Node.js
+    uses: actions/setup-node@v4
+    with:
+      node-version: '20'
+
+  - name: Build APK
+    run: |
+      unzip -o jana_wailin_apk_builder.zip -d builder
+      cd builder
+      ls -la
